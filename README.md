@@ -1,18 +1,5 @@
 # A-weakly-supervised-highlight-removal-network-based-on-cyclegan
 
-### metal -> stone
-
-| Input | Output | | Input | Output | | Input | Output |
-|-------|--------|-|-------|--------|-|-------|--------|
-|![metal2stone_1](samples/real_metal2stone_1.jpg) | ![metal2stone_1](samples/fake_metal2stone_1.jpg)| |![metal2stone_2](samples/real_metal2stone_2.jpg) | ![metal2stone_2](samples/fake_metal2stone_2.jpg)| |![metal2stone_3](samples/real_metal2stone_3.jpg) | ![metal2stone_3](samples/fake_metal2stone_3.jpg)|
-
-
-### orange -> apple
-
-| Input | Output | | Input | Output | | Input | Output |
-|-------|--------|-|-------|--------|-|-------|--------|
-|![stone2metal_1](samples/real_stone2metal_1.jpg) | ![orange2apple_1](samples/fake_stone2metal_1.jpg)| |![orange2apple_2](samples/real_stone2metal_2.jpg) | ![stone2metal_2](samples/fake_stone2metal_2.jpg)| |![orange2apple_3](samples/real_stone2metal_3.jpg) | ![orange2apple_3](samples/fake_stone2metal_3.jpg)|
-
 ## Environment
 
 * TensorFlow 1.0.0
@@ -20,10 +7,10 @@
 
 ## Data preparing
 
-* First, download a dataset, e.g. apple2orange
+* First, use our dataset
 
 ```bash
-$ bash download_dataset.sh apple2orange
+$ bash download_dataset.sh metal2stone
 ```
 
 * Write the dataset to tfrecords

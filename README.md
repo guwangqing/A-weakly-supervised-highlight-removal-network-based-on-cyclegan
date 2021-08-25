@@ -7,7 +7,8 @@
 
 ## Data preparing
 
-* First, use our dataset
+* First, use our dataset(Using the dataset provided by scholars such as Huang Hui of Shenzhen University)
+* 链接：https://pan.baidu.com/s/1c4FzUyCDSnqK4E-Bh8RdNA 提取码：kl42
 
 ```bash
 $ bash download_dataset.sh metal2stone

@@ -57,8 +57,9 @@ optional arguments:
   --norm NORM           [instance, batch] use instance norm or batch norm,
                         default: instance
   --lambda1 LAMBDA1     weight for forward cycle loss (X->Y->X), default: 10.0
-  --lambda2 LAMBDA2     weight for backward cycle loss (Y->X->Y), default:
-                        10.0
+  --lambda2 LAMBDA2     weight for backward cycle loss (Y->X->Y), default: 10.0
+  --lambda3 LAMBDA3     confidence map x(X->Y->X), default: 2.0
+  --lambda4 LAMBDA4     confidence map y(Y->X->Y), default: 2.0
   --learning_rate LEARNING_RATE
                         initial learning rate for Adam, default: 0.0002
   --beta1 BETA1         momentum term of Adam, default: 0.5

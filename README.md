@@ -8,7 +8,7 @@
 ## Data preparing
 
 * First, use our dataset(Using the dataset provided by scholars such as Huang Hui of Shenzhen University)
-* 链接：https://pan.baidu.com/s/1g_XtOhn1pt1FUlsoXMimlQ 
+* 链接: https://pan.baidu.com/s/1r-ZTGFRlGiP2l9KVEpOCTg 提取码: 0g2o 
 
 ```bash
 $ bash download_dataset.sh metal2stone

@@ -2,13 +2,13 @@
 
 ## Environment
 
-* TensorFlow 1.0.0
+* TensorFlow 1.2.0
 * Python 3.6.0
 
 ## Data preparing
 
 * First, use our dataset(Using the dataset provided by scholars such as Huang Hui of Shenzhen University)
-* 链接：https://pan.baidu.com/s/1f2imc6mmqRJs30u6KPDH3Q 提取码：nkzp 
+* 链接：https://pan.baidu.com/s/1QBAr60da_ewj91U1kbr2jw 提取码：t8f5 
 
 ```bash
 $ bash download_dataset.sh metal2stone

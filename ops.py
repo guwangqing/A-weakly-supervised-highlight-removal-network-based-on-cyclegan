@@ -53,6 +53,35 @@ def dk(input, k, reuse=False, norm='instance', is_training=True, name=None):
     output = tf.nn.relu(normalized)
     return output
 
+def Dk(input, k, reuse=False, norm='instance', is_training=True, name=None):
+  with tf.variable_scope(name, reuse=reuse):
+    with tf.variable_scope('layer0', reuse=reuse):
+      weights0 = _weights("weights0",
+        shape=[3, 3, input.get_shape()[3], k])
+      padded0 = tf.pad(input, [[0,0],[1,1],[1,1],[0,0]], 'REFLECT')
+      conv0 = tf.nn.conv2d(padded0, weights0,
+          strides=[1, 1, 1, 1], padding='VALID')
+      normalized0 = _norm(conv0, is_training, norm)
+      relu0 = tf.nn.relu(normalized0)
+    current = relu0
+    for i in range(1, 8):
+      with tf.variable_scope('layer{}'.format(i), reuse=reuse):
+        weights0 = _weights("weights{}".format(i),
+          shape=[3, 3, current.get_shape()[3], k])
+        padded0 = tf.pad(current, [[0,0],[1,1],[1,1],[0,0]], 'REFLECT')
+        conv0 = tf.nn.conv2d(padded0, weights0,
+            strides=[1, 1, 1, 1], padding='VALID')
+        normalized0 = _norm(conv0, is_training, norm)
+        relu0 = tf.nn.relu(normalized0)
+      current = tf.concat((current, relu0), axis = 3)
+    return current
+def n_Dens_blocks(input,  reuse, norm='instance', is_training=True, n=3):
+  depth = 16
+  for i in range(1,n+1):
+    output = Dk(input, depth, reuse, norm, is_training, 'R{}_{}'.format(depth, i))
+    input = output
+  return output
+
 def Rk(input, k,  reuse=False, norm='instance', is_training=True, name=None):
   """ A residual block that contains two 3x3 convolutional layers
       with the same number of filters on both layer

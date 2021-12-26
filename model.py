@@ -136,8 +136,8 @@ class CycleGAN:
     #F_loss = F_gan_loss + cycle_loss
     
     pre_y = normalize_aittala(y,kernel1)
-    pre_y = 2.**pre_y
-    pre_y = tf.math.log(pre_y) / tf.math.log(2.)
+    pre_y = 3.**pre_y
+    pre_y = tf.math.log(pre_y) / tf.math.log(3.)
     D_y_loss = self.lambda4*tf.reduce_mean(tf.abs(pre_y - fake_x))
     F_loss =  F_gan_loss + cycle_loss + D_y_loss
     D_X_loss = self.discriminator_loss(self.D_X, x, self.fake_x, use_lsgan=self.use_lsgan)

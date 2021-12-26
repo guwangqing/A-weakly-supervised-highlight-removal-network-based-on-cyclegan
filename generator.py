@@ -27,18 +27,20 @@ class Generator:
       d128 = ops.dk(d64, 4*self.ngf, is_training=self.is_training, norm=self.norm,
           reuse=self.reuse, name='d128')                                # (?, w/4, h/4, 128)
 
-      if self.image_size <= 128:
-        # use 6 residual blocks for 128x128 images
-        res_output = ops.n_res_blocks(d128, reuse=self.reuse, n=6)      # (?, w/4, h/4, 128)
-      else:
-        # 9 blocks for higher resolution
-        res_output = ops.n_res_blocks(d128, reuse=self.reuse, n=9)      # (?, w/4, h/4, 128)
-
+      #if self.image_size <= 128:
+         #use 6 residual blocks for 128x128 images
+         #res_output = ops.n_res_blocks(d128, reuse=self.reuse, n=6)      # (?, w/4, h/4, 128)
+      #else:
+         # 9 blocks for higher resolution
+         #res_output = ops.n_res_blocks(d128, reuse=self.reuse, n=9)      # (?, w/4, h/4, 128)
+      res_output = ops.n_Dens_blocks(d128, reuse=self.reuse, n=2)
       # fractional-strided convolution
       u64 = ops.uk(res_output, 2*self.ngf, is_training=self.is_training, norm=self.norm,
           reuse=self.reuse, name='u64')                                 # (?, w/2, h/2, 64)
+      u64 = tf.concat((u64, d64), axis = 3)
       u32 = ops.uk(u64, self.ngf, is_training=self.is_training, norm=self.norm,
           reuse=self.reuse, name='u32', output_size=self.image_size)         # (?, w, h, 32)
+      u32 = tf.concat((u32, c7s1_32), axis = 3)
 
       # conv layer
       # Note: the paper said that ReLU and _norm were used
